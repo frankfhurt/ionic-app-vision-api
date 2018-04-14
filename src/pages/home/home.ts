@@ -8,7 +8,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController, private camera: Camera) {
+  constructor(private camera: Camera, public navCtrl: NavController) {
 
   }
 
