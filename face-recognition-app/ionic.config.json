@@ -1,8 +1,0 @@
-{
-  "name": "face-recognition-app",
-  "app_id": "b99a49a7",
-  "type": "ionic-angular",
-  "integrations": {
-    "cordova": {}
-  }
-}
