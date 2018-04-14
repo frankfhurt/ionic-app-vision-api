@@ -7,12 +7,11 @@
 <ion-content class="home">
   <ion-card>
     <ion-card-content>
-      Hello World, this is my camera app
 
-      <button (click)="takePicture()">Take a Picture</button>
+      <button ion-button full (click)="takePicture()">Take a Picture</button>
 
-      Latest Picture:
       <img [src]="base64Image" *ngIf="base64Image" />
+      <!-- <ion-img width="80" height="80" src="base64Image" *ngIf="base64Image"/></ion-img> -->
     </ion-card-content>
   </ion-card>
 </ion-content>
