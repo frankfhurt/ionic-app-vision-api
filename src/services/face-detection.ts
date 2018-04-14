@@ -41,6 +41,10 @@ export class FaceDetectionService {
             toast.setMessage(JSON.parse(respose.data));
 
             toast.present();
+        }).catch(err => {
+            toast.setMessage(err);
+
+            toast.present();
         });
 
     }
