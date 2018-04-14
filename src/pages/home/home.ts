@@ -28,6 +28,7 @@ export class HomePage {
      // If it's base64:
      this.base64Image = 'data:image/jpeg;base64,' + imageData;
     }, (err) => {
+      console.log(err);
      // Handle error
     });
   }
