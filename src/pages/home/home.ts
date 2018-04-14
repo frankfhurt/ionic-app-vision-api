@@ -44,6 +44,8 @@ export class HomePage {
 
       toast.present();
 
+      // var the_file = new Blob([window.atob(imageData)]);
+      // var file = new File([the_file], 'img');
       this.service.proccessImage(this.base64Image);
     }, (err) => {
       console.log(err);
