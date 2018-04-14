@@ -11,6 +11,8 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Camera } from '@ionic-native/camera';
+import { HTTP } from '@ionic-native/http';
+import { FaceDetectionService } from '../services/face-detection';
 
 class CameraMock extends Camera {
 
@@ -46,8 +48,10 @@ class CameraMock extends Camera {
   providers: [
     StatusBar,
     SplashScreen,
-    Camera,
-    // { provide: Camera, useClass: CameraMock },
+    //Camera,
+    { provide: Camera, useClass: CameraMock },
+    HTTP,
+    FaceDetectionService,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
   ]
 })

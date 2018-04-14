@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import { FaceDetectionService } from '../../services/face-detection';
 
 @Component({
   selector: 'page-home',
@@ -10,7 +11,8 @@ export class HomePage {
 
   public base64Image: string;
 
-  constructor(private camera: Camera, public navCtrl: NavController) {
+  constructor(private camera: Camera, public navCtrl: NavController,
+              private service: FaceDetectionService) {
 
   }
 
@@ -27,11 +29,13 @@ export class HomePage {
 
     this.camera.getPicture(options).then(imageData => {
       // imageData is either a base64 encoded string or a file URI
-     // If it's base64:
-     this.base64Image = 'data:image/jpeg;base64,' + imageData;
+      // If it's base64:
+      this.base64Image = 'data:image/jpeg;base64,' + imageData;
+
+      this.service.proccessImage(this.base64Image);
     }, (err) => {
       console.log(err);
-     // Handle error
+      // Handle error
     });
   }
 
