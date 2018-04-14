@@ -49,8 +49,8 @@ class CameraMock extends Camera {
   providers: [
     StatusBar,
     SplashScreen,
-    // Camera,
-    { provide: Camera, useClass: CameraMock },
+    Camera,
+    // { provide: Camera, useClass: CameraMock },
     FaceDetectionService,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
   ]
