@@ -16,8 +16,19 @@ export class FaceDetectionService {
 
     private headers = new Headers();
     private requestOpts = new RequestOptions();
+    private toast;
 
-    constructor(public http: Http, private toastCtrl: ToastController) { }
+    constructor(public http: Http, private toastCtrl: ToastController) {
+        this.toast = this.toastCtrl.create({
+            message: 'Vai chamar o webservice',
+            duration: 3000,
+            position: 'top'
+        });
+    
+        this.toast.onDidDismiss(() => {
+            console.log('Dismissed toast');
+        });
+     }
 
     proccessImage(img) {
 
@@ -27,45 +38,12 @@ export class FaceDetectionService {
 
         this.requestOpts.headers = this.headers;
 
-        let toast = this.toastCtrl.create({
-            message: 'Vai chamar o webservice',
-            duration: 3000,
-            position: 'top'
-        });
+        this.toast.present();
 
-        toast.onDidDismiss(() => {
-            console.log('Dismissed toast');
-        });
-
-        toast.present();
-
-        fetch(img)
+        return fetch(img)
             .then(res => res.blob())
-            .then(blob => {
-                this.http.post(this.url,
-                    // JSON.stringify({ url: 'https://scdailymakeover.files.wordpress.com/2014/01/gisele-682x1024.jpg' }),
-                    blob,
-                    this.requestOpts)
-                    .subscribe(data => {
-        
-                        console.log("RETORNO: " + data.json());
-        
-                        toast.setMessage(data.json());
-        
-                        toast.present();
-                    }, err => {
-                        toast.setMessage(err);
-        
-                        toast.present();
-                    });
-
-
-                // console.log("here is your binary: ", blob)
-
-                // now upload it
-                // fetch(api, { method: 'POST', body: blob })
-            })
-
-
+                .then(blob => {
+                    return this.http.post(this.url, blob, this.requestOpts);
+        })
     }
 }

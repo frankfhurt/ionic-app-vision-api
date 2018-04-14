@@ -7,11 +7,37 @@
 <ion-content class="home">
   <ion-card>
     <ion-card-content>
-
       <button ion-button full (click)="takePicture('picture')">Take a Picture</button>
-
+    </ion-card-content>
+    <ion-card-content>
       <img [src]="base64Image" *ngIf="base64Image" />
-      <!-- <ion-img src="base64Image" *ngIf="base64Image"></ion-img> -->
     </ion-card-content>
   </ion-card>
+
+  <ion-card>
+    <ion-card-content>
+      <ion-input type="text" [(ngModel)]="respose"></ion-input>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- <ion-card>
+    <ion-card-content>
+        <ion-list>
+            <ion-item>
+              <ion-label>Tags</ion-label>
+              <ion-select [(ngModel)]="Year" (ngModelChange)="GetMatchDatesByYear($event)">
+                <ion-option *ngFor="let item of resultYear; let i = index" value={{item.Year}}>{{item.Year}}</ion-option>
+              </ion-select>
+            </ion-item>
+          
+            <ion-item>
+              <ion-label>Date</ion-label>
+              <ion-select  [(ngModel)]="Date" (ngModelChange)="GetScorecard($event)">
+                <ion-option *ngFor="let item of resultDate; let i = index" value={{item.MatchOID}}>{{item.Date}}</ion-option>     
+              </ion-select>
+            </ion-item>
+          </ion-list>
+    </ion-card-content>
+  </ion-card> -->
+
 </ion-content>

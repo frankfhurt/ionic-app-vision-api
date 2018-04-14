@@ -11,6 +11,8 @@ import { ToastController } from 'ionic-angular';
 export class HomePage {
 
   public base64Image: string;
+  public respose: string;
+  public objectResponse;
 
   constructor(private camera: Camera, public navCtrl: NavController,
     private service: FaceDetectionService, private toastCtrl: ToastController) {
@@ -46,7 +48,19 @@ export class HomePage {
 
       // var the_file = new Blob([window.atob(imageData)]);
       // var file = new File([the_file], 'img');
-      this.service.proccessImage(this.base64Image);
+      this.service.proccessImage(this.base64Image).then(result => {
+        result.subscribe(data => {
+          console.log("RETORNO: " + JSON.stringify(data.json()));
+          this.objectResponse = data.json();
+          this.respose = JSON.stringify(JSON.parse(JSON.stringify(data.json())),null,2);  
+        })
+      })
+      // .subscribe(data => {
+
+      // }, err => {
+      //   this.toast.setMessage(err);
+      //   this.toast.present();
+      // });
     }, (err) => {
       console.log(err);
       // Handle error
